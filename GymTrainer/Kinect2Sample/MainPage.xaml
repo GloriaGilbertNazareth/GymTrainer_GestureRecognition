@@ -19,11 +19,11 @@
             <Setter Property="Background" Value="{StaticResource ButtonGradientBrush}"/>
             <Setter Property="BorderBrush" Value="{StaticResource ButtonBorderBrush}"/>
             <Setter Property="BorderThickness" Value="2"/>
-            <Setter Property="Padding" Value="12,4,12,4"/>
+            <Setter Property="Padding" Value="12,2,12,2"/>
             <Setter Property="Width" Value="120"/>
             <Setter Property="Height" Value="80"/>
-            <Setter Property="Margin" Value="6"/>
-            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="FontSize" Value="14"/>
         </Style>
         <local:DisplayTypeToVisibilityConverter x:Key="DisplayTypeToVisibilityConverter"/>
     </Page.Resources>
@@ -36,15 +36,11 @@
                 <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Style="{StaticResource SubheaderTextBlockStyle}"
-                       Text="Kinect For Windows 2"/>
+                       Text="Welcome to the GYM!!"/>
             <StackPanel Grid.Row="0" Orientation="Horizontal" 
                         HorizontalAlignment="Right" VerticalAlignment="Bottom">
                 <TextBlock Text="Kinect Status:  "/>
                 <TextBlock Text="{Binding StatusText}"/>
-                <TextBlock Text=", FrameWidth =  "/>
-                <TextBlock Text="{Binding CurrentFrameDescription.Width}"/>
-                <TextBlock Text=", FrameHeight =  "/>
-                <TextBlock Text="{Binding CurrentFrameDescription.Height}"/>
             </StackPanel>
             <Image x:Name="FrameBackground" Source="Assets/Background.png" Grid.Row="1" Stretch="Fill" 
                    Visibility="{Binding CurrentDisplayFrameType, 
@@ -95,12 +91,12 @@
             <!--Lab13-->
             <TextBlock x:Name="GestureVisual"
                 Grid.Row="1"
-                Text="Detecting Gesture"
-                FontSize="30"
+                Text=""
+                FontSize="20"
                 Foreground="White"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Top"
-                Opacity="0.0">
+                HorizontalAlignment="Left"
+                VerticalAlignment="Bottom"
+                Opacity="1.0">
             </TextBlock>
             <Button x:Name="FullScreenBackButton" Style="{StaticResource KinectBackButtonStyle}" 
                     Grid.Row="1"
