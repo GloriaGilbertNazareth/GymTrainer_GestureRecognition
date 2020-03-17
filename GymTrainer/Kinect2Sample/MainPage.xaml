@@ -1,0 +1,131 @@
+﻿<Page
+    x:Class="Kinect2Sample.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Kinect2Sample"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:dx="using:DirectXSceneStore"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <LinearGradientBrush x:Key="ButtonGradientBrush" StartPoint="0,0" EndPoint="0,1" >
+            <GradientStopCollection>
+                <GradientStop Offset="0.0" Color="#3B78C8"/>
+                <GradientStop Offset="1.0" Color="#2C6199"/>
+            </GradientStopCollection>
+        </LinearGradientBrush>
+        <SolidColorBrush x:Key="ButtonBorderBrush" Color="#7ab1f9"/>
+        <Style x:Key="FrameSelectorButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="{StaticResource ButtonGradientBrush}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource ButtonBorderBrush}"/>
+            <Setter Property="BorderThickness" Value="2"/>
+            <Setter Property="Padding" Value="12,2,12,2"/>
+            <Setter Property="Width" Value="120"/>
+            <Setter Property="Height" Value="80"/>
+            <Setter Property="Margin" Value="2"/>
+            <Setter Property="FontSize" Value="14"/>
+        </Style>
+        <local:DisplayTypeToVisibilityConverter x:Key="DisplayTypeToVisibilityConverter"/>
+    </Page.Resources>
+
+    <Grid Background="Gray" >
+        <Grid x:Name="RootGrid" Margin="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <TextBlock Grid.Row="0" Style="{StaticResource SubheaderTextBlockStyle}"
+                       FontSize="35" FontWeight="ExtraBold" IsColorFontEnabled="True" Foreground="Black"   Text="Welcome to the GYM!!"/>
+            <StackPanel Grid.Row="0" Orientation="Horizontal" 
+                        HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <TextBlock Text="Kinect Status:  "/>
+                <TextBlock Text="{Binding StatusText}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Vertical" Width="300" Height="300" HorizontalAlignment="Left"
+                        Visibility="Visible">
+                <Image x:Name="squatsImg" Visibility ="Collapsed" Source="Database/Squats.png"></Image>
+                <Image x:Name="kettlebellsImg"  Visibility ="Collapsed" Source="Database/kettlebells.png"></Image>
+                <Image x:Name="chestpressImg"  Visibility ="Collapsed" Source="Database/chestpress.jpg"></Image>
+                <Image x:Name="jumpingjacksImg"  Visibility ="Collapsed" Source="Database/jumpingjacks.png"></Image>
+                <Image x:Name="armraiseImg"  Visibility ="Collapsed" Source="Database/armraises.png"></Image>
+                <Image x:Name="dumbbellImg"  Visibility ="Collapsed" Source="Database/dumbbell.png"></Image>
+            </StackPanel>
+            <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Orientation="Vertical" Width="600" HorizontalAlignment="Left"
+                        Visibility="Visible">
+                <TextBlock x:Name="Instruction" Text="" FontWeight="Black" FontSize="13" Foreground="Black"/>
+                <TextBlock x:Name="Instruction1" Text="" FontWeight="Black" FontSize="13" Foreground="Black" />
+                <TextBlock x:Name="Instruction2" Text="" FontWeight="Black" FontSize="13" Foreground="Black" />
+                <TextBlock x:Name="Instruction3" Text="" FontWeight="Black" FontSize="13" Foreground="Black" />
+
+            </StackPanel>
+            <Image x:Name="FrameBackground" Source="Assets/Background.png" Grid.Row="1" Stretch="Fill" 
+                   Visibility="Collapsed"/>
+            <Image x:Name="FrameDisplayImage"  HorizontalAlignment="Right" Grid.Row="1" Stretch="Uniform"/>
+            <Viewbox Grid.Row="1" HorizontalAlignment="Right">
+                <Grid x:Name="BodyJointsGrid" Background="Transparent" Width="512" Height="414"/>
+            </Viewbox>
+            <dx:ScenePanel x:Name="DXScenePanel" Grid.Row="1" Margin="20"
+                   Visibility="Collapsed" />
+            <Viewbox Grid.Row="1" HorizontalAlignment="Center">
+                <Canvas x:Name="FacePointsCanvas"/>
+            </Viewbox>
+            
+            <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Left"
+                        Visibility="{Binding CurrentDisplayFrameType,
+                   Converter={StaticResource DisplayTypeToVisibilityConverter}, 
+                   ConverterParameter=BackgroundRemoved }">
+                <TextBlock Text="DepthMax"/>
+                <TextBlock Text="{Binding DepthMax}"/>
+                <Slider Width="250" Minimum="500" Maximum="8000" Value="{Binding DepthMax, Mode=TwoWay}"/>
+            </StackPanel>
+            <ScrollViewer Grid.Row="3" ScrollViewer.HorizontalScrollBarVisibility="Auto" 
+                          ScrollViewer.VerticalScrollBarVisibility="Auto">
+                <StackPanel Orientation="Horizontal">
+
+                    <Button  x:Name="Kettlebells" Style="{StaticResource FrameSelectorButtonStyle}"
+                           Background="#000" Click="Kettlebells_Click">
+                        <TextBlock Text="Kettlebells" TextWrapping="Wrap"/>
+                    </Button>
+                    <Button x:Name="Chestpress" Style="{StaticResource FrameSelectorButtonStyle}"
+                            Background="#000" Click="Chestpress_Click">
+                        <TextBlock Text="Shoulder Prs" TextWrapping="Wrap"/>
+                    </Button>
+                    <Button x:Name="Jumpingjacks" Style="{StaticResource FrameSelectorButtonStyle}"
+                            Background="#000" Click="Jumpingjacks_Click">
+                        <TextBlock Text="Jumping Jack" TextWrapping="Wrap"/>
+                    </Button>
+
+                    <Button x:Name="Squats" Style="{StaticResource FrameSelectorButtonStyle}"
+                            Background="#000" Click="Squats_Click">
+                        <TextBlock Text="Squat " TextWrapping="Wrap"/>
+                    </Button>
+                    <Button x:Name="Armraises" Style="{StaticResource FrameSelectorButtonStyle}"
+                            Background="#000" Click="Armraises_Click">
+                        <TextBlock Text="Arm Raise " TextWrapping="Wrap"/>
+                    </Button>
+                    <Button x:Name="Dumbbells" Style="{StaticResource FrameSelectorButtonStyle}"
+                            Background="#000" Click="Dumbbells_Click">
+                        <TextBlock Text="Dumbbell " TextWrapping="Wrap"/>
+                    </Button>
+                </StackPanel>
+            </ScrollViewer>
+            <TextBlock x:Name="GestureVisual"
+                Grid.Row="2"
+                Text=""
+                FontSize="20"
+                Foreground="Yellow"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Opacity="1.0">
+            </TextBlock>
+            <Button x:Name="FullScreenBackButton" Style="{StaticResource KinectBackButtonStyle}" 
+                    Grid.Row="1"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Top"
+                    Click="FullScreenBackButton_Click"
+                    Visibility="Collapsed"/>
+
+        </Grid>
+    </Grid>
+</Page>
