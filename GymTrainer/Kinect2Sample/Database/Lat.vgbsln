@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<GestureBuilderFile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<SolutionFile>
+		<Header>
+			<Date>2020-03-16</Date>
+			<Time>19:28:21.9943902-04:00</Time>
+			<Version>1</Version>
+			<Type>Solution</Type>
+			<ID>61c0c7fd-d9a7-48de-a3b5-c1bb0796fc5e</ID>
+		</Header>
+		<Solution_Data>
+			<Files>
+				<Name />
+				<Content>
+					<Items>
+						<File>Lat.vgbproj</File>
+					</Items>
+					<Items>
+						<File>Lat.a.vgbproj</File>
+					</Items>
+				</Content>
+			</Files>
+		</Solution_Data>
+		<UI_State />
+		<Attributes />
+	</SolutionFile>
+</GestureBuilderFile>
