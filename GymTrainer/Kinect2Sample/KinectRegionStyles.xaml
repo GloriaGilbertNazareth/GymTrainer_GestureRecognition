@@ -18,13 +18,7 @@
                         <Grid>
                             <ContentPresenter x:Name="contentHolder" />
 
-                            <!-- only change from default KinectRegion style,
-                                 is the addition of a user viewer under cursor layer,
-                                 but above content -->
-                            <k:KinectUserViewer Height="100" Width="121"
-                                HorizontalAlignment="Center"
-                                VerticalAlignment="Top" />
-
+                            
                             <Canvas x:Name="cursorRenderingLayer" Background="{x:Null}"/>
                         </Grid>
                     </Border>
