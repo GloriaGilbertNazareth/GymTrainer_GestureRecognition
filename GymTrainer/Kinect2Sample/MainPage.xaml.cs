@@ -431,7 +431,7 @@ namespace Kinect2Sample
         void GestureResult_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             GestureResultView result = sender as GestureResultView;
-            this.GestureVisual.Text = "Confidence level: " + (Math.Round(result.Confidence, 2)).ToString() + " Count: " + this.count + " Time: " + (DateTime.Now - this.exstartTime).ToString();
+            this.GestureVisual.Text = "Confidence level: " + (Math.Round(result.Confidence, 2)).ToString() + " Count: " + this.count;
             if (result.Confidence ==1 )
             {
                 this.endTime = DateTime.Now;
@@ -507,14 +507,34 @@ namespace Kinect2Sample
         }
 
         
-
+        
         private void RenderPixelArray(byte[] pixels)
         {
             pixels.CopyTo(this.bitmap.PixelBuffer);
             this.bitmap.Invalidate();
             this.FrameDisplayImage.Source = this.bitmap;
         }
-
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            this.Instruction.Text = "Pressed Exit";
+            //this.();
+            Window.Current.CoreWindow.Close();
+            //this.Instruction1.Text = "couldn't close";
+        }
+        private void Help_Click(object sender, RoutedEventArgs e)
+        {
+            this.squatsImg.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            this.kettlebellsImg.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            this.chestpressImg.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            this.jumpingjacksImg.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            this.armraiseImg.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            this.dumbbellImg.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
+            this.Instruction.Text = "1. To start, click on an Exercise below";
+            this.Instruction1.Text = "2. Follow the Instructions displayed to perform your Exercise";
+            this.Instruction2.Text = "3. Repetition Counter will be displayed on the bottom right corner of your screen";
+            this.Instruction3.Text = "4. Repeat Steps 1,2 and 3.";
+            this.Instruction4.Text = "5. Once done, use 'Exit' button to Exit your Virtual Gym";
+        }
 
         private void Squats_Click(object sender, RoutedEventArgs e)
         {
@@ -531,6 +551,7 @@ namespace Kinect2Sample
             this.Instruction1.Text = "1. Stand with your head facing forward, your chest held up and hands stretching outwards.";
             this.Instruction2.Text = "2. Place your feet shoulder-width apart or slightly wider";
             this.Instruction3.Text = "3. Sit back and down with your thighs as parallel to the floor as possible";
+            this.Instruction4.Text = "";
             this.count = 0;
             Gesture_Loaded(exercise);
             SolidColorBrush silverBrush = new SolidColorBrush(Windows.UI.Colors.Silver);
@@ -554,7 +575,7 @@ namespace Kinect2Sample
             this.Instruction1.Text = "1. Stand behind kettlebell with feet slightly wider apart than shoulder width.";
             this.Instruction2.Text = "2. Drive hips forward, and knees straight so kettlebell is pushed forward and upward.";
             this.Instruction3.Text = "3. Swing kettlebell back down between legs.";
-
+            this.Instruction4.Text = "";
             this.squatsImg.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             this.kettlebellsImg.Visibility = Windows.UI.Xaml.Visibility.Visible;
             this.chestpressImg.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
@@ -583,6 +604,7 @@ namespace Kinect2Sample
             this.Instruction1.Text = "1. Hold a dumbbell in each hand and sit on a bench with feet firm on the floor";
             this.Instruction2.Text = "2. Bend your elbows, raise your upper arms to shoulder height so the dumbbells are at ear lvl.";
             this.Instruction3.Text = "3. Push the dumbbells up over your head, and then lower the dumbbells back to ear level.";
+            this.Instruction4.Text = "";
             this.squatsImg.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             this.kettlebellsImg.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             this.chestpressImg.Visibility = Windows.UI.Xaml.Visibility.Visible;
@@ -610,6 +632,7 @@ namespace Kinect2Sample
             this.Instruction1.Text = "1. Stand upright with your legs together, arms at your sides.";
             this.Instruction2.Text = "2. Bend your knees slightly, and jump into the air.";
             this.Instruction3.Text = "3. As you jump, spread your legs to be about shoulder-width apart and arms above your head.";
+            this.Instruction4.Text = "";
             this.squatsImg.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             this.kettlebellsImg.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             this.chestpressImg.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
@@ -644,6 +667,7 @@ namespace Kinect2Sample
             this.Instruction1.Text = "1. Stand upright with your legs together, arms at your sides.";
             this.Instruction2.Text = "2. Raise your arms upfront till your shoulder levels.";
             this.Instruction3.Text = "3. Hold your arms in this position or a second and bring them down slowly.";
+            this.Instruction4.Text = "";
             this.squatsImg.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             this.kettlebellsImg.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             this.chestpressImg.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
@@ -675,6 +699,7 @@ namespace Kinect2Sample
             this.Instruction1.Text = "1. Stand upright with your legs together, arms at your sides.";
             this.Instruction2.Text = "2. With the dumbbells in your hands, Curl your armss.";
             this.Instruction3.Text = "3. Hold your arms in this position or a second and bring them down slowly.";
+            this.Instruction4.Text = "";
             this.squatsImg.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             this.kettlebellsImg.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
             this.chestpressImg.Visibility = Windows.UI.Xaml.Visibility.Collapsed;

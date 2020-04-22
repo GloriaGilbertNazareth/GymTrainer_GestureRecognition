@@ -36,13 +36,19 @@
                 <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Style="{StaticResource SubheaderTextBlockStyle}"
-                       FontSize="35" FontWeight="ExtraBold" IsColorFontEnabled="True" Foreground="Black"   Text="Welcome to the GYM!!"/>
+                       FontSize="35" FontWeight="ExtraBold" IsColorFontEnabled="True" Foreground="Black"   Text="Welcome to your VIRTUAL GYM!!"/>
             <StackPanel Grid.Row="0" Orientation="Horizontal" 
-                        HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                <TextBlock Text="Kinect Status:  "/>
-                <TextBlock Text="{Binding StatusText}"/>
+                        HorizontalAlignment="Right" VerticalAlignment="Top">
+                <Button x:Name="Help" Style="{StaticResource FrameSelectorButtonStyle}"
+                            Background="#000" Click="Help_Click" Width="100" Height="60" >
+                    <TextBlock Text="Help" TextWrapping="Wrap"/>
+                </Button>
+                <Button x:Name="Exit" Style="{StaticResource FrameSelectorButtonStyle}"
+                            Background="#000" Click="Exit_Click" Width="100" Height="60" >
+                    <TextBlock Text="Exit" TextWrapping="Wrap"/>
+                </Button>
             </StackPanel>
-            <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Vertical" Width="300" Height="300" HorizontalAlignment="Left"
+            <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Orientation="Vertical" Width="300" Height="300" HorizontalAlignment="Left"
                         Visibility="Visible">
                 <Image x:Name="squatsImg" Visibility ="Collapsed" Source="Database/Squats.png"></Image>
                 <Image x:Name="kettlebellsImg"  Visibility ="Collapsed" Source="Database/kettlebells.png"></Image>
@@ -51,13 +57,13 @@
                 <Image x:Name="armraiseImg"  Visibility ="Collapsed" Source="Database/armraises.png"></Image>
                 <Image x:Name="dumbbellImg"  Visibility ="Collapsed" Source="Database/dumbbell.png"></Image>
             </StackPanel>
-            <StackPanel Grid.Row="1" VerticalAlignment="Bottom" Orientation="Vertical" Width="600" HorizontalAlignment="Left"
+            <StackPanel Grid.Row="1" VerticalAlignment="Top" Orientation="Vertical" Width="500" HorizontalAlignment="Left"
                         Visibility="Visible">
-                <TextBlock x:Name="Instruction" Text="" FontWeight="Black" FontSize="13" Foreground="Black"/>
-                <TextBlock x:Name="Instruction1" Text="" FontWeight="Black" FontSize="13" Foreground="Black" />
-                <TextBlock x:Name="Instruction2" Text="" FontWeight="Black" FontSize="13" Foreground="Black" />
-                <TextBlock x:Name="Instruction3" Text="" FontWeight="Black" FontSize="13" Foreground="Black" />
-
+                <TextBlock x:Name="Instruction" Text="" FontWeight="Black" FontSize="20" Foreground="Black" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Instruction1" Text="" FontWeight="Black" FontSize="20" Foreground="Black" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Instruction2" Text="" FontWeight="Black" FontSize="20" Foreground="Black" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Instruction3" Text="" FontWeight="Black" FontSize="20" Foreground="Black" TextWrapping="Wrap"/>
+                <TextBlock x:Name="Instruction4" Text="" FontWeight="Black" FontSize="20" Foreground="Black" TextWrapping="Wrap"/>
             </StackPanel>
             <Image x:Name="FrameBackground" Source="Assets/Background.png" Grid.Row="1" Stretch="Fill" 
                    Visibility="Collapsed"/>
@@ -108,24 +114,29 @@
                             Background="#000" Click="Dumbbells_Click">
                         <TextBlock Text="Dumbbell " TextWrapping="Wrap"/>
                     </Button>
+                    <Button x:Name="Pullups" Style="{StaticResource FrameSelectorButtonStyle}"
+                            Background="#000" >
+                        <TextBlock Text="PullUp " TextWrapping="Wrap"/>
+                    </Button>
+                    
                 </StackPanel>
             </ScrollViewer>
+            <Border Background="AntiqueWhite" HorizontalAlignment="Right" VerticalAlignment="Bottom" Grid.Row="2" Height="80">
             <TextBlock x:Name="GestureVisual"
-                Grid.Row="2"
+                
                 Text=""
-                FontSize="20"
-                Foreground="Yellow"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Bottom"
+                FontSize="30"
+                VerticalAlignment="Center"
+                Foreground="Black"             
                 Opacity="1.0">
             </TextBlock>
+            </Border>
             <Button x:Name="FullScreenBackButton" Style="{StaticResource KinectBackButtonStyle}" 
                     Grid.Row="1"
                     HorizontalAlignment="Left"
                     VerticalAlignment="Top"
                     Click="FullScreenBackButton_Click"
                     Visibility="Collapsed"/>
-
         </Grid>
     </Grid>
 </Page>
